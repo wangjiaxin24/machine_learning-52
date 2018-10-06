@@ -11,10 +11,13 @@
 
 其中，<a href="https://www.codecogs.com/eqnedit.php?latex=x_{1}...x_{n}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?x_{1}...x_{n}" title="x_{1}...x_{n}" /></a>表示样本的n维特征，<a href="https://www.codecogs.com/eqnedit.php?latex=w_{0},...w_{n}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?w_{0},...w_{n}" title="w_{0},...w_{n}" /></a>表示不同特征的权重。
   
-### 线性回归又包括： 
+### 线性回归模型： 
 * 简单线性回归:（数据集D中样本是有1个属性所描述，类似于一元线性函数 y=wx+by=wx+b ）；
 * 多元线性回归:（数据集D中样本由d个属性所描述， y=WTX+by=WTX+b ）；
-* 广义线性回归：如对数几率回归，
+* 对数线性回归：<a href="https://www.codecogs.com/eqnedit.php?latex=lny=W^{T}*X&plus;b" target="_blank"><img src="https://latex.codecogs.com/gif.latex?lny=W^{T}*X&plus;b" title="lny=W^{T}*X+b" /></a>形式上仍是线性回归，实质上是在求取输入空间到输出空间的非线性映射。
+### 广义线性回归模型：
+* <a href="https://www.codecogs.com/eqnedit.php?latex=y=g^{-1}(W^{T}*X&plus;b)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y=g^{-1}(W^{T}*X&plus;b)" title="y=g^{-1}(W^{T}*X+b)" /></a>
+*倘若所做的是分类任务，则只需找一个单调可微函数将分类任务的真实标记y与线性回归模型的预测值联系起来。对于二分类任务，常使用对数几率函数（sigmoid函数），这也就是逻辑回归的来源。
 ## 2. 最小二乘法与极大似然估计
 
 
