@@ -2,30 +2,19 @@
 
       
 # 线性回归
-![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_1.png?raw=true)
-
 **线性回归可以通过升维或升幂方式拟合非线性可分数据。**
-
 ## 1. 理论基础：
 * 大数定律：在试验不变的条件下，重复试验多次，随机事件的频率近似于它的概率。
 * 中心极限定理：一些现象受到许多相互独立的随机因素的影响，如果每个因素所产生的影响都很微小时，总的影响可以看作是服从正态分布的。
 * 线性函数：一阶（或更低阶）多项式，或零多项式。
 * 线性回归模型：利用线性函数对一个或多个自变量（x）和因变量（y）之间的关系进行拟合的模型。
-
-
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_1.png?raw=true)
 ## 2. 定义：
   给定数据集 D=(x1,y1),(x2,y2),...,(xm,ym)D=(x1,y1),(x2,y2),...,(xm,ym) ，其中 xi=(xi1,xi2,...,xid)xi=(xi1,xi2,...,xid) ， yi∈Ryi∈R 。‘线性回归‘试图学得一个线性模型以尽可能准确地预测实值输出标记，即 f(xi)=wxi+bf(xi)=wxi+b ，使得 f(xi)⋍yif(xi)⋍yi 。
-线性回归又包括： 
-简单线性回归:（数据集D中样本是有1个属性所描述，类似于一元线性函数 y=wx+by=wx+b ）；
-多元线性回归:（数据集D中样本由d个属性所描述， y=WTX+by=WTX+b ）；
-广义线性回归：
-
-对数线性回归:  lny=wT+bln⁡y=wT+b （试图让 ewTx+bewTx+b 逼近y）---形式上仍是线性回归，实质上是在求取输入空间到输出空间的非线性映射；
-
-
-
-
-
+### 线性回归又包括： 
+* 简单线性回归:（数据集D中样本是有1个属性所描述，类似于一元线性函数 y=wx+by=wx+b ）；
+* 多元线性回归:（数据集D中样本由d个属性所描述， y=WTX+by=WTX+b ）；
+* 广义线性回归：对数线性回归:  lny=wT+bln⁡y=wT+b （试图让 ewTx+bewTx+b 逼近y）---形式上仍是线性回归，实质上是在求取输入空间到输出空间的非线性映射；
 ## 2. 最小二乘法与极大似然估计
 
 
