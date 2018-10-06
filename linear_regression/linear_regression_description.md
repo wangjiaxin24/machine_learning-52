@@ -2,7 +2,9 @@
 
       
 # 线性回归
-** 线性回归可以通过升维或升幂方式拟合非线性可分数据。 **
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_1.png?raw=true)
+
+**线性回归可以通过升维或升幂方式拟合非线性可分数据。**
 
 ## 1. 理论基础：
 * 大数定律：在试验不变的条件下，重复试验多次，随机事件的频率近似于它的概率。
@@ -29,7 +31,3 @@
 
 
 
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=ax^{2}&space;&plus;&space;by^{2}&space;&plus;&space;c&space;=&space;0" target="_blank"<img src="https://latex.codecogs.com/gif.latex?ax^{2}&space;&plus;&space;by^{2}&space;&plus;&space;c&space;=&space;0" title="ax^{2} + by^{2} + c = 0" /></a>
-
-![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/20170413173941522.png?raw=true)
