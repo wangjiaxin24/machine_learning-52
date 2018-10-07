@@ -91,6 +91,8 @@ y:  array  [n_samples, n_targets]
 
 [爖--线性回归](https://note.youdao.com/share/?id=981825c617d47c10f4e0c373e8b7bfff&type=note#/)
 
+YYT的jupyter notebook
+
 [Datawhale--线性回归](https://blog.csdn.net/Datawhale/article/details/82931967)
 
 [李烨老师--机器学习](https://gitbook.cn/gitchat/column/5ad70dea9a722231b25ddbf8/topic/5b20586fe6a93576476f6b19)
