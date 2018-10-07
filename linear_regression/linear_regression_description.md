@@ -18,26 +18,28 @@
 * <a href="https://www.codecogs.com/eqnedit.php?latex=y=g^{-1}(W^{T}*X&plus;b)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y=g^{-1}(W^{T}*X&plus;b)" title="y=g^{-1}(W^{T}*X+b)" /></a>
 * 对数线性回归：<a href="https://www.codecogs.com/eqnedit.php?latex=lny=W^{T}*X&plus;b" target="_blank"><img src="https://latex.codecogs.com/gif.latex?lny=W^{T}*X&plus;b" title="lny=W^{T}*X+b" /></a>形式上仍是线性回归，实质上是在求取输入空间到输出空间的非线性映射。
 * 倘若所做的是分类任务，则只需找一个单调可微函数将分类任务的真实标记y与线性回归模型的预测值联系起来。对于二分类任务，常使用对数几率函数（sigmoid函数），这也就是逻辑回归的来源。
-## 3. 线性回归的目标函数
+## 3. 线性回归的损失函数
+### 最小二乘法
 * 预测值y'和真实值y之间的差异，使用<a href="https://www.codecogs.com/eqnedit.php?latex=(y^{'}-y)^{2}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(y^{'}-y)^{2}" title="(y^{'}-y)^{2}" /></a>来表示。
-* 如何衡量这种差异，引入损失函数，即<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}&plus;b-y^{(i)})^{2}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}&plus;b-y^{(i)})^{2}" title="J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}+b-y^{(i)})^{2}" /></a>* 上述目标函数是基于均方误差最小化来进行模型求解的方法，也被称为“最小二乘法”。线性回归模型就是使用最小二乘“参数估计”进行求解w,b（b是截距也称为bias）。
-
-## 4. 参数的求解
-### 最小二乘法与极大似然估计
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_2.png?raw=true)
-
-而从概率的角度来看待这个问题，求w,b的极大似然估计，其结果可以在数学上等价于求w,b的最小二乘法。下面来证明这一点：
+### 极大似然估计
 * 误差
-
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_3.png?raw=true)
-* 极大似然估计
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_4.png?raw=true)
-
+线性回归模型的训练就是使用最小二乘法或者极大似然估计作为损失函数，从而寻找最优参数w,b（b是截距也称为bias）。
+## 4. 参数的求解
+### 求导
+* 对各参数求偏导，并使其偏导为0，进而求出最优的参数。但此方法不适用于不可导函数，且计算量过大。
 ### 梯度下降法
-将x增加一个维度x(n+1)=(,1),w也增加一个维度w(n+1)=（，b）于是原始的目标函数可以视为求解关于模型参数θ=w+w(n+1)。
+* 将x增加一个维度x(n+1)=(,1),w也增加一个维度w(n+1)=（，b）于是原始的目标函数可以视为求解关于模型参数θ=w+w(n+1)。
 梯度下降法基于的思想为：要找到某函数的极小值，则沿着该函数的梯度方向寻找。若函数为凸函数且约束为凸集，则找到的极小值点则为最小值点。
 梯度下降基本算法为： 首先用随机值填充θ（这被称为随机初始化），然后逐渐改进，每次步进一步(步长α)，每一步都试图降低代价函数，直到算法收敛到最小。
+
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;\theta&space;=\theta&space;&plus;\alpha&space;\bigtriangledown&space;_{\theta&space;}J(\theta&space;)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;\theta&space;=\theta&space;&plus;\alpha&space;\bigtriangledown&space;_{\theta&space;}J(\theta&space;)" title="\theta =\theta +\alpha \bigtriangledown _{\theta }J(\theta )" /></a>
+* 常见的梯度下降法：批量梯度下降(BGD)  随机梯度下降(SGD) 小批量梯度下降(MBGD)
+[参考爖的笔记](https://note.youdao.com/share/?id=981825c617d47c10f4e0c373e8b7bfff&type=note#/)
+
+
 
 
 
