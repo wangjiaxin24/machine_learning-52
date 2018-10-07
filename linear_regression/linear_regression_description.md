@@ -6,6 +6,7 @@
 * 线性函数：一阶（或更低阶）多项式，或零多项式。
 * 线性回归模型：利用线性函数对一个或多个自变量（x）和因变量（y）之间的关系进行拟合的模型。
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_1.png?raw=true)
+
 ## 2. 模型分类：
 <a href="https://www.codecogs.com/eqnedit.php?latex=y=w_{0}&plus;w_{1}*x_{1}&plus;w_{2}*x_{2}&plus;...&plus;w_{n}*x_{n}=W^{T}*X" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y=w_{0}&plus;w_{1}*x_{1}&plus;w_{2}*x_{2}&plus;...&plus;w_{n}*x_{n}=W^{T}*X" title="y=w_{0}+w_{1}*x_{1}+w_{2}*x_{2}+...+w_{n}*x_{n}=W^{T}*X" /></a>
 
@@ -18,6 +19,7 @@
 * <a href="https://www.codecogs.com/eqnedit.php?latex=y=g^{-1}(W^{T}*X&plus;b)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y=g^{-1}(W^{T}*X&plus;b)" title="y=g^{-1}(W^{T}*X+b)" /></a>
 * 对数线性回归：<a href="https://www.codecogs.com/eqnedit.php?latex=lny=W^{T}*X&plus;b" target="_blank"><img src="https://latex.codecogs.com/gif.latex?lny=W^{T}*X&plus;b" title="lny=W^{T}*X+b" /></a>形式上仍是线性回归，实质上是在求取输入空间到输出空间的非线性映射。
 * 倘若所做的是分类任务，则只需找一个单调可微函数将分类任务的真实标记y与线性回归模型的预测值联系起来。对于二分类任务，常使用对数几率函数（sigmoid函数），这也就是逻辑回归的来源。
+
 ## 3.损失函数
 ### （1）最小二乘法
 * 预测值y'和真实值y之间的差异，使用<a href="https://www.codecogs.com/eqnedit.php?latex=(y^{'}-y)^{2}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(y^{'}-y)^{2}" title="(y^{'}-y)^{2}" /></a>来表示。
@@ -28,11 +30,12 @@
 ### （2）极大似然估计
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_3.png?raw=true)
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_4.png?raw=true)
-**线性回归模型的训练就是使用最小二乘法或者极大似然估计作为损失函数，从而寻找最优参数w,b（b是截距也称为bias）。**
+
 ## 4.损失函数中添加正则项
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_5.png?raw=true)
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_6.png?raw=true)
 [为什么L1正则化可以产生稀疏模型（L1是怎么让系数等于零的），以及为什么L2正则化可以防止过拟合?](https://blog.csdn.net/jinping_shi/article/details/52433975)
+
 ## 5. 模型参数的求解
 ### （1）求导法
 * 对各参数求偏导，并使其偏导为0，进而求出最优的参数。但此方法不适用于不可导函数，且计算量过大。
@@ -44,6 +47,8 @@
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;\theta&space;=\theta&space;&plus;\alpha&space;\bigtriangledown&space;_{\theta&space;}J(\theta&space;)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;\theta&space;=\theta&space;&plus;\alpha&space;\bigtriangledown&space;_{\theta&space;}J(\theta&space;)" title="\theta =\theta +\alpha \bigtriangledown _{\theta }J(\theta )" /></a>
 * 常见的梯度下降法：批量梯度下降(BGD)  随机梯度下降(SGD) 小批量梯度下降(MBGD)
 * [参考爖的笔记](https://note.youdao.com/share/?id=981825c617d47c10f4e0c373e8b7bfff&type=note#/)
+
+**线性回归模型的训练就是在确定损失函数的情况下，以特定的方式寻找最优参数w,b的过程（b是截距也称为bias）。**
 
 ## 6. sklearn.linear_model.LinearRegression中的参数
 **linearRegression(fit_intercept=True,nomalize=False,copy_X=True,n_jobs=None)**
