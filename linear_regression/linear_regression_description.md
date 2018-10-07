@@ -13,7 +13,7 @@
   
 ### 线性回归模型： 
 * 简单线性回归:数据集中样本只有一个特征，类似于一元线性函数；
-* 多元线性回归:数据集中样本包含有多个特征；
+* 多元线性回归:数据集中样本包含有多个特征。
 ### 广义线性回归模型：
 * <a href="https://www.codecogs.com/eqnedit.php?latex=y=g^{-1}(W^{T}*X&plus;b)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?y=g^{-1}(W^{T}*X&plus;b)" title="y=g^{-1}(W^{T}*X+b)" /></a>
 * 对数线性回归：<a href="https://www.codecogs.com/eqnedit.php?latex=lny=W^{T}*X&plus;b" target="_blank"><img src="https://latex.codecogs.com/gif.latex?lny=W^{T}*X&plus;b" title="lny=W^{T}*X+b" /></a>形式上仍是线性回归，实质上是在求取输入空间到输出空间的非线性映射。
@@ -22,12 +22,20 @@
 ### 最小二乘法
 * 预测值y'和真实值y之间的差异，使用<a href="https://www.codecogs.com/eqnedit.php?latex=(y^{'}-y)^{2}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(y^{'}-y)^{2}" title="(y^{'}-y)^{2}" /></a>来表示。
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_2.png?raw=true)
+* 为减少样本量对损失函数的影响，我们可以选择除以样本量m。
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}&plus;b-y^{(i)})^{2}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}&plus;b-y^{(i)})^{2}" title="J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}+b-y^{(i)})^{2}" /></a>
 ### 极大似然估计
 * 误差
+
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_3.png?raw=true)
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_4.png?raw=true)
-线性回归模型的训练就是使用最小二乘法或者极大似然估计作为损失函数，从而寻找最优参数w,b（b是截距也称为bias）。
-## 4. 参数的求解
+**线性回归模型的训练就是使用最小二乘法或者极大似然估计作为损失函数，从而寻找最优参数w,b（b是截距也称为bias）。**
+## 4.正则项
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_5.png?raw=true)
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_6.png?raw=true)
+[为什么L1正则化可以产生稀疏模型（L1是怎么让系数等于零的），以及为什么L2正则化可以防止过拟合?](https://blog.csdn.net/jinping_shi/article/details/52433975)
+## 5. 参数的求解
 ### 求导
 * 对各参数求偏导，并使其偏导为0，进而求出最优的参数。但此方法不适用于不可导函数，且计算量过大。
 ### 梯度下降法
@@ -37,7 +45,10 @@
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;\theta&space;=\theta&space;&plus;\alpha&space;\bigtriangledown&space;_{\theta&space;}J(\theta&space;)" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;\theta&space;=\theta&space;&plus;\alpha&space;\bigtriangledown&space;_{\theta&space;}J(\theta&space;)" title="\theta =\theta +\alpha \bigtriangledown _{\theta }J(\theta )" /></a>
 * 常见的梯度下降法：批量梯度下降(BGD)  随机梯度下降(SGD) 小批量梯度下降(MBGD)
-[参考爖的笔记](https://note.youdao.com/share/?id=981825c617d47c10f4e0c373e8b7bfff&type=note#/)
+* [参考爖的笔记](https://note.youdao.com/share/?id=981825c617d47c10f4e0c373e8b7bfff&type=note#/)
+
+## 6. sklearn.linear_model.LinearRegression中的参数
+* linearRegression(fit_intercept=True,nomalize=False,copy_X=True,n_jobs=None)
 
 
 
