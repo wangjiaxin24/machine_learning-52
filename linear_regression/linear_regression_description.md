@@ -20,12 +20,12 @@
 * 倘若所做的是分类任务，则只需找一个单调可微函数将分类任务的真实标记y与线性回归模型的预测值联系起来。对于二分类任务，常使用对数几率函数（sigmoid函数），这也就是逻辑回归的来源。
 ## 3. 线性回归的目标函数
 * 预测值y'和真实值y之间的差异，使用<a href="https://www.codecogs.com/eqnedit.php?latex=(y^{'}-y)^{2}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?(y^{'}-y)^{2}" title="(y^{'}-y)^{2}" /></a>来表示。
-* 如何衡量这种差异，引入损失函数，即<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}&plus;b-y^{(i)})^{2}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}&plus;b-y^{(i)})^{2}" title="J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}+b-y^{(i)})^{2}" /></a>我们要做的，就是找到最好的W和b，b是截距也称为bias。
+* 如何衡量这种差异，引入损失函数，即<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}&plus;b-y^{(i)})^{2}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}&plus;b-y^{(i)})^{2}" title="J(w,b)=\frac{1}{2m}\sum_{i=1}^{m}(y^{'(i)}-y^{(i)})^{2}=\frac{1}{2m}\sum_{i=1}^{m}(W^{^{T}}*X^{(i)}+b-y^{(i)})^{2}" /></a>* 上述目标函数是基于均方误差最小化来进行模型求解的方法，也被称为“最小二乘法”。线性回归模型就是使用最小二乘“参数估计”进行求解w,b（b是截距也称为bias）。
 
 ## 4. 参数的求解
 ### 最小二乘法与极大似然估计
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_2.png?raw=true)
-* 上述目标函数是基于均方误差最小化来进行模型求解的方法，也被称为“最小二乘法”。线性回归模型就是使用最小二乘“参数估计”进行求解w,b。
+
 而从概率的角度来看待这个问题，求w,b的极大似然估计，其结果可以在数学上等价于求w,b的最小二乘法。下面来证明这一点：
 * 误差
 
