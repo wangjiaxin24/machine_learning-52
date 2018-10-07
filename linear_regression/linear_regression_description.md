@@ -83,6 +83,15 @@ y:  array  [n_samples, n_targets]
 
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_7.png?raw=true)
 
+# 参考资料
+[黑桃--线性回归](https://github.com/Heitao5200/Heitao5200_MachineLearning/blob/master/LR/LinearRegression.md)
+
+[爖--线性回归](https://note.youdao.com/share/?id=981825c617d47c10f4e0c373e8b7bfff&type=note#/)
+
+[Datawhale--线性回归](https://blog.csdn.net/Datawhale/article/details/82931967)
+
+[李烨老师--机器学习](https://gitbook.cn/gitchat/column/5ad70dea9a722231b25ddbf8/topic/5b20586fe6a93576476f6b19)
+
 
 
 
