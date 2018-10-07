@@ -51,33 +51,38 @@
 * linearRegression(fit_intercept=True,nomalize=False,copy_X=True,n_jobs=None)
 * 主要参数说明：
 
-fit_intercept : 默认为True,是否计算该模型的截距。如果使用中心化的数据，可以考虑设置为False,不考虑截距。注意这里是考虑，一般还是要考虑截距
+**fit_intercept**: 默认为True,是否计算该模型的截距。如果使用中心化的数据，可以考虑设置为False,不考虑截距。注意这里是考虑，一般还是要考虑截距
 
 normalize: 默认为false. 当fit_intercept设置为false的时候，这个参数会被自动忽略。如果为True,回归器会标准化输入参数：减去平均值，并且除以相应的二范数。当然啦，在这里还是建议将标准化的工作放在训练模型之前。通过设置sklearn.preprocessing.StandardScaler来实现，而在此处设置为false
 
-copy_X : 默认为True, 否则X会被改写
+**copy_X** : 默认为True, 否则X会被改写
 
-n_jobs: int 默认为1. 当-1时默认使用全部CPUs ??(这个参数有待尝试)
+**n_jobs**: int 默认为1. 当-1时默认使用全部CPUs ??(这个参数有待尝试)
 
-可用属性：
+* 可用属性：
 
-coef_:训练后的输入端模型系数，如果label有两个，即y值有两列。那么是一个2D的array
+**coef_**:训练后的输入端模型系数，如果label有两个，即y值有两列。那么是一个2D的array
 
-intercept_: 截距
+**intercept_**: 截距
 
-可用的methods:
+* 可用的methods:
 
-fit(X,y,sample_weight=None):  
+**fit(X,y,sample_weight=None):** 
+
 X: array, 稀疏矩阵 [n_samples,n_features] 
+
 y:  array  [n_samples, n_targets] 
-sample_weight: 权重 array  [n_samples] 
-在版本0.17后添加了sample_weight
 
-get_params(deep=True)： 返回对regressor 的设置值
+**sample_weight**: 权重 array  [n_samples] 
 
-predict(X): 预测 
+**get_params(deep=True)：** 返回对regressor 的设置值
 
-score（评估基于 R^2值）：score(X, y, sample_weight=None)，其结果等于1-(((y_true - y_pred) **2).sum() / ((y_true - y_true.mean()) ** 2).sum())
+**predict(X):** 预测 
+
+**score(X, y, sample_weight=None)：**，评估基于 R^2值，其结果等于
+
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_7.png?raw=true)
+
 
 
 
