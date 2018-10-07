@@ -26,9 +26,9 @@
 ### 最小二乘法与极大似然估计
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_2.png?raw=true)
 * 上述目标函数是基于均方误差最小化来进行模型求解的方法，也被称为“最小二乘法”。线性回归模型就是使用最小二乘“参数估计”进行求解w,b。
-而从概率的角度来看待这个问题，求w,b的极大似然估计，其结果可以在数学上等价于求w,b的最小二乘法。
-
+而从概率的角度来看待这个问题，求w,b的极大似然估计，其结果可以在数学上等价于求w,b的最小二乘法。下面来证明这一点：
 * 误差
+
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_3.png?raw=true)
 * 极大似然估计
 ![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/linear_4.png?raw=true)
