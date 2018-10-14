@@ -3,24 +3,24 @@
 * 逻辑回归是在数据服从伯努利分布的假设下，通过极大似然的方法，运用梯度下降法来求解参数，从而达到将数据二分类的目的。
 * 假设条件：（1）数据服从伯努利分布（例如抛硬币）；（2）假设样本为正的概论 p 为一个 Sigmoid 函数。 
 
-逻辑回归对样本概率的估计类似线性回归，也是计算出样本的一系列权重，然后将该权重线性加和之后输入到sigmoid函数中，进而计算出一个概率值。
+（1）逻辑回归对样本概率的估计类似线性回归，也是计算出样本的一系列权重，然后将该权重线性加和之后输入到sigmoid函数中，进而计算出一个概率值。
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;P=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;^{T}x}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;P=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;^{T}x}}" title="P=h_{\theta }(x)=\frac{1}{1+e^{\theta ^{T}x}}" /></a>
 
 
-sigmoid函数将θTx的值域从R映射到 (0, 1)，从而表示发生事件的概率值，然后根据计算出来的概率值p>=0.5归为1，P<0.5归为0。
+（2）sigmoid函数将θTx的值域从R映射到 (0, 1)，从而表示发生事件的概率值，然后根据计算出来的概率值p>=0.5归为1，P<0.5归为0。
 
 ## 损失函数
-我们既然是通过sigmoid函数的值来进行概率预测的，那么我们的目标就应该是找出一组权重参数θ，能够对于正样本使得sigmoid函数有一个高的输出值，而对于负样本有一个低的输出。我们可以通过计算损失函数来逐步达到这一的目标。
-逻辑回归的损失函数是其极大似然函数。
+（1）我们既然是通过sigmoid函数的值来进行概率预测的，那么我们的目标就应该是找出一组权重参数θ，能够对于正样本使得sigmoid函数有一个高的输出值，而对于负样本有一个低的输出。我们可以通过计算损失函数来逐步达到这一的目标。
+
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;L(\theta&space;)=\prod&space;_{i=1}^{m}P(y|x;\theta&space;)&space;=\prod&space;_{i=1}^{m}(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;L(\theta&space;)=\prod&space;_{i=1}^{m}P(y|x;\theta&space;)&space;=\prod&space;_{i=1}^{m}(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})" title="L(\theta )=\prod _{i=1}^{m}P(y|x;\theta ) =\prod _{i=1}^{m}(h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})})" /></a>
 
-
+（2）为了便于计算，取对数。
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})" title="logL(\theta )=\sum _{i=1}^{m}log(h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})})" /></a>
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" title="=\sum _{i=1}^{m}[y_{i}log(h_{\theta }(x_{i})+(1-y_{i})log(1-h_{\theta }(x_{i}))]" /></a>
 
-cost function通过最小化负的对数似然函数得到：
+（3）通过最小化负的对数似然函数得到最终损失函数表达式：
  
  <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;J(\theta&space;)=-\frac{1}{m}\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;J(\theta&space;)=-\frac{1}{m}\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" title="J(\theta )=-\frac{1}{m}\sum _{i=1}^{m}[y_{i}log(h_{\theta }(x_{i})+(1-y_{i})log(1-h_{\theta }(x_{i}))]" /></a>
  
@@ -28,7 +28,7 @@ cost function通过最小化负的对数似然函数得到：
  
 ## 逻辑回归中参数求解方法
 
-极大似然函数无法直接求解，一般是通过对该函数进行梯度下降来不断逼近其最优解。这里需要注意的点是要对梯度下降有一定的了解，就梯度下降本身来看的话就有随机梯度下降，批梯度下降，small batch 梯度下降三种方式，面试官可能会问这三种方式的优劣以及如何选择最合适的梯度下降方式。
+**极大似然函数无法直接求解，一般是通过对该函数进行梯度下降来不断逼近其最优解。**
 
 * 批梯度下降：会获得全局最优解，缺点是在更新每个参数的时候需要遍历所有的数据，计算量会很大，并且会有很多的冗余计算，导致的结果是当数据量大的时候，每个参数的更新都会很慢。
 
