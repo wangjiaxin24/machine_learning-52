@@ -4,7 +4,7 @@
 * 假设条件：（1）数据服从伯努利分布（例如抛硬币）；（2）假设样本为正的概论 p 为一个 Sigmoid 函数。 
 
 逻辑回归对样本概率的估计类似线性回归，也是计算出样本的一系列权重，然后将该权重线性加和之后输入到sigmoid函数中，进而计算出一个概率值。
-<a href="https://www.codecogs.com/eqnedit.php?latex=p=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;Tx}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;Tx}}" title="p=h_{\theta }(x)=\frac{1}{1+e^{\theta Tx}}" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" title="logL(\theta )=\sum _{i=1}^{m}log(h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})})=\sum _{i=1}^{m}[y_{i}log(h_{\theta }(x_{i})+(1-y_{i})log(1-h_{\theta }(x_{i}))]" /></a>
 
 sigmoid函数将θTx的值域从R映射到 (0, 1)，从而表示发生事件的概率值，然后根据计算出来的概率值p>=0.5归为1，P<0.5归为0。
 
@@ -14,7 +14,9 @@ sigmoid函数将θTx的值域从R映射到 (0, 1)，从而表示发生事件的�
 <a href="https://www.codecogs.com/eqnedit.php?latex=L(\theta&space;)=\prod&space;_{i=1}^{m}P(y|x;\theta&space;)&space;=\prod&space;_{i=1}^{m}h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L(\theta&space;)=\prod&space;_{i=1}^{m}P(y|x;\theta&space;)&space;=\prod&space;_{i=1}^{m}h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})}" title="L(\theta )=\prod _{i=1}^{m}P(y|x;\theta ) =\prod _{i=1}^{m}h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})}" /></a>
 
 
-<a href="https://www.codecogs.com/eqnedit.php?latex=logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" title="logL(\theta )=\sum _{i=1}^{m}log(h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})})=\sum _{i=1}^{m}[y_{i}log(h_{\theta }(x_{i})+(1-y_{i})log(1-h_{\theta }(x_{i}))]" /></a>
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})" title="logL(\theta )=\sum _{i=1}^{m}log(h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})})" /></a>
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" title="=\sum _{i=1}^{m}[y_{i}log(h_{\theta }(x_{i})+(1-y_{i})log(1-h_{\theta }(x_{i}))]" /></a>
 
 cost function通过最小化负的对数似然函数得到：
  
