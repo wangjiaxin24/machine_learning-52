@@ -3,21 +3,24 @@
 * 逻辑回归是在数据服从伯努利分布的假设下，通过极大似然的方法，运用梯度下降法来求解参数，从而达到将数据二分类的目的。
 * 假设条件：（1）数据服从伯努利分布（例如抛硬币）；（2）假设样本为正的概论 p 为一个 Sigmoid 函数。 
 
+逻辑回归对样本概率的估计类似线性回归，也是计算出样本的一系列权重，然后将该权重线性加和之后输入到sigmoid函数中，进而计算出一个概率值。
+<a href="https://www.codecogs.com/eqnedit.php?latex=p=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;Tx}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?p=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;Tx}}" title="p=h_{\theta }(x)=\frac{1}{1+e^{\theta Tx}}" /></a>
 
-
-
-
-
-
-
-
-
-
-
+sigmoid函数将θTx的值域从R映射到 (0, 1)，从而表示发生事件的概率值，然后根据计算出来的概率值p>=0.5归为1，P<0.5归为0。
 
 ## 损失函数
+我们既然是通过sigmoid函数的值来进行概率预测的，那么我们的目标就应该是找出一组权重参数θ，能够对于正样本使得sigmoid函数有一个高的输出值，而对于负样本有一个低的输出。我们可以通过计算损失函数来逐步达到这一的目标。
 逻辑回归的损失函数是其极大似然函数。
+<a href="https://www.codecogs.com/eqnedit.php?latex=L(\theta&space;)=\prod&space;_{i=1}^{m}P(y|x;\theta&space;)&space;=\prod&space;_{i=1}^{m}h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?L(\theta&space;)=\prod&space;_{i=1}^{m}P(y|x;\theta&space;)&space;=\prod&space;_{i=1}^{m}h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})}" title="L(\theta )=\prod _{i=1}^{m}P(y|x;\theta ) =\prod _{i=1}^{m}h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})}" /></a>
 
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?logL(\theta&space;)=\sum&space;_{i=1}^{m}log(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" title="logL(\theta )=\sum _{i=1}^{m}log(h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})})=\sum _{i=1}^{m}[y_{i}log(h_{\theta }(x_{i})+(1-y_{i})log(1-h_{\theta }(x_{i}))]" /></a>
+
+cost function通过最小化负的对数似然函数得到：
+ 
+ 
+ 
+ 
  
 ## 逻辑回归中参数求解方法
 
@@ -25,7 +28,7 @@
 
 * 批梯度下降：会获得全局最优解，缺点是在更新每个参数的时候需要遍历所有的数据，计算量会很大，并且会有很多的冗余计算，导致的结果是当数据量大的时候，每个参数的更新都会很慢。
 
-* 随机梯度下降：仅选取一个样本来求梯度，是以高方差频繁更新，优点是使得 sgd 会跳到新的和潜在更好的局部最优解，缺点是使得收敛到局部最优解的过程更加的复杂。
+* 随机梯度下降：仅选取一个样本来求梯度，是以高方差频繁更新，优点是会跳到新的和潜在更好的局部最优解，缺点是使得收敛到局部最优解的过程更加的复杂。
 
 * 小批量梯度下降：结合了批梯度下降和随机梯度下降的优点，每次更新的时候使用 n 个样本。减少了参数更新的次数，可以达到更加稳定收敛结果，一般在深度学习当中我们采用这种方法。
 
@@ -62,13 +65,9 @@
 
 （2）很难处理数据不平衡的问题。举个例子：如果我们对于一个正负样本非常不平衡的问题比如正负样本比 10000:1。我们把所有样本都预测为正也能使损失函数的值比较小。但是作为一个分类器，它对正负样本的区分能力不会很好。
 
-（3）无法自动的进行特征筛选（不是加了L1,L2正则？？）。
+（3）对模型中自变量[多重共线性](https://www.jianshu.com/p/ef1b27b8aee0)较为敏感
 
-（4）只能处理二分类问题（有多分类吧？）。
-
-（5）对模型中自变量[多重共线性](https://www.jianshu.com/p/ef1b27b8aee0)较为敏感
-
-（6）sigmoid函数两端斜率小，模型输出的概率值变化小，中间段斜率大，概率变化大。这导致特征某些区间的数值变化对概率的影响较大。
+（4）sigmoid函数两端斜率小，模型输出的概率值变化小，中间段斜率大，概率变化大。这导致特征某些区间的数值变化对概率的影响较大。
 
 ## 逻辑回归的问题
 （1）逻辑回归中为什么使用对数损失而不用平方损失？
@@ -94,4 +93,6 @@
 [ML--广义线性回归(线性回归、逻辑回归)](https://blog.csdn.net/jiebanmin0773/article/details/82962182)
 
 [逻辑回归算法面经](https://mp.weixin.qq.com/s__biz=MzI4Mzc5NDk4MA==&mid=2247484688&idx=6&sn=cdff744e9db787578552416f4dcf222b&chksm=eb840e5bdcf3874d4ad546361dc4247287b528b6cb4988dda3837d5a6bfb73a7961aabbab32a&mpshare=1&scene=1&srcid=1011bwPIPARtKOq4hzUPpnpR#rd])
+
+[爖的有道云笔记](https://note.youdao.com/share/?id=3736895c09a621e8c3e0b430d2ead239&type=note#/)
 
