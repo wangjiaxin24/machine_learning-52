@@ -92,5 +92,5 @@
 
 # 参考资料
 [ML--广义线性回归(线性回归、逻辑回归)](https://blog.csdn.net/jiebanmin0773/article/details/82962182)
-[逻辑回归算法面经](https://mp.weixin.qq.com/s?__biz=MzI4Mzc5NDk4MA==&mid=2247484688&idx=6&sn=cdff744e9db787578552416f4dcf222b&chksm=eb840e5bdcf3874d4ad546361dc4247287b528b6cb4988dda3837d5a6bfb73a7961aabbab32a&mpshare=1&scene=1&srcid=1011bwPIPARtKOq4hzUPpnpR#rd])
+[逻辑回归算法面经](https://mp.weixin.qq.com/s__biz=MzI4Mzc5NDk4MA==&mid=2247484688&idx=6&sn=cdff744e9db787578552416f4dcf222b&chksm=eb840e5bdcf3874d4ad546361dc4247287b528b6cb4988dda3837d5a6bfb73a7961aabbab32a&mpshare=1&scene=1&srcid=1011bwPIPARtKOq4hzUPpnpR#rd])
 
