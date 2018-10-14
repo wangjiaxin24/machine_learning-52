@@ -1,5 +1,7 @@
 
 # 逻辑回归
+## 一、定义
+**
 * 逻辑回归是在数据服从伯努利分布的假设下，通过极大似然的方法，运用梯度下降法来求解参数，从而达到将数据二分类的目的。
 * 假设条件：（1）数据服从伯努利分布（例如抛硬币）；（2）假设样本为正的概论 p 为一个 Sigmoid 函数。 
 
@@ -11,7 +13,10 @@
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;P=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;^{T}x}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;P=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;^{T}x}}" title="P=h_{\theta }(x)=\frac{1}{1+e^{\theta ^{T}x}}" /></a>
 
-## 损失函数
+### 多分类问题softmax
+softmax其实是Logistic的推广到多类别分类应用中，不需建立多个二分类分类器来实现多类别分类。softmax分类器的思想很简单，对于一个新的样本，softmax回归模型对于每一类都先计算出一个分数，然后通过softmax函数得出一个概率值，根据最终的概率值来确定属于哪一类。
+
+## 二、损失函数
 （1）我们既然是通过sigmoid函数的值来进行概率预测的，那么我们的目标就应该是找出一组权重参数θ，能够对于正样本使得sigmoid函数有一个高的输出值，而对于负样本有一个低的输出。我们可以通过计算损失函数来逐步达到这一的目标。
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;L(\theta&space;)=\prod&space;_{i=1}^{m}P(y|x;\theta&space;)&space;=\prod&space;_{i=1}^{m}(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;L(\theta&space;)=\prod&space;_{i=1}^{m}P(y|x;\theta&space;)&space;=\prod&space;_{i=1}^{m}(h_{\theta&space;}(x_{i})^{y_{i}}(1-h_{\theta&space;}(x_{i}))^{(1-y^{i})})" title="L(\theta )=\prod _{i=1}^{m}P(y|x;\theta ) =\prod _{i=1}^{m}(h_{\theta }(x_{i})^{y_{i}}(1-h_{\theta }(x_{i}))^{(1-y^{i})})" /></a>
@@ -28,7 +33,7 @@
  
  
  
-## 逻辑回归中参数求解方法
+## 三、参数求解方法
 
 **极大似然函数无法直接求解，一般是通过对该函数进行梯度下降来不断逼近其最优解。**
 
@@ -39,7 +44,7 @@
 * 小批量梯度下降：结合了批梯度下降和随机梯度下降的优点，每次更新的时候使用 n 个样本。减少了参数更新的次数，可以达到更加稳定收敛结果，一般在深度学习当中我们采用这种方法。
 
 
-## 逻辑回归的优缺点
+## 四、逻辑回归的优缺点
 * 优点：
 
 （1）形式简单，模型的可解释性非常好。从特征的权重可以看到不同的特征对最后结果的影响。
@@ -62,7 +67,7 @@
 
 （4）sigmoid函数两端斜率小，模型输出的概率值变化小，中间段斜率大，概率变化大。这导致特征某些区间的数值变化对概率的影响较大。
 
-## 逻辑回归的问题
+## 五、常见面试题
 （1）逻辑回归中为什么使用对数损失而不用平方损失？
 
  * 众所周知，线性模型是平方损失函数。对于逻辑回归，这里所说的对数损失和极大似然是相同的。 
