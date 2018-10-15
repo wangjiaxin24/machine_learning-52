@@ -110,3 +110,4 @@ softmax其实是Logistic的推广到多类别分类应用中，不需建立多�
 
 [爖的有道云笔记](https://note.youdao.com/share/?id=3736895c09a621e8c3e0b430d2ead239&type=note#/)
 
+[Logistic and Softmax Regression](https://blog.csdn.net/danieljianfeng/article/details/41901063)
