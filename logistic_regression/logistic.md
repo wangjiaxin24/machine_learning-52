@@ -100,8 +100,9 @@ softmax其实是Logistic的推广到多类别分类应用中，不需建立多�
 
 * 如果在损失函数最终收敛的情况下，其实就算有很多特征高度相关也不会影响分类器的效果。 但是对特征本身来说的话，假设只有一个特征，在不考虑采样的情况下，你现在将它重复 N 遍。训练以后完以后，数据还是这么多，但是这个特征本身重复了 N 遍，实质上将原来的特征分成了 N 份，每一个特征都是原来特征权重值的百分之一。
 
+## 六、Sklearn库中Logistic Regression函数各个参数总结
 
-
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/logistic_7.jpg?raw=true)
 
 # 参考资料
 [ML--广义线性回归(线性回归、逻辑回归)](https://blog.csdn.net/jiebanmin0773/article/details/82962182)
