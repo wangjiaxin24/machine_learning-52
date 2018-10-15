@@ -16,6 +16,12 @@
 ### 多分类问题softmax
 softmax其实是Logistic的推广到多类别分类应用中，不需建立多个二分类分类器来实现多类别分类。softmax分类器的思想很简单，对于一个新的样本，softmax回归模型对于每一类都先计算出一个分数，然后通过softmax函数得出一个概率值，根据最终的概率值来确定属于哪一类。
 
+和逻辑回归一样，得到loss函数为：
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=J(\theta&space;)=-\frac{1}{m}[\sum&space;_{i=1}^{m}\sum&space;_{j=1}^{k}1.{y^{(i)=j}log\frac{e^{\theta&space;_{T}^{j}x^{(i)}}}{\sum&space;_{l=1}^{k}e\theta&space;_{l}^{T}x^{(i)}}}]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?J(\theta&space;)=-\frac{1}{m}[\sum&space;_{i=1}^{m}\sum&space;_{j=1}^{k}1.{y^{(i)=j}log\frac{e^{\theta&space;_{T}^{j}x^{(i)}}}{\sum&space;_{l=1}^{k}e\theta&space;_{l}^{T}x^{(i)}}}]" title="J(\theta )=-\frac{1}{m}[\sum _{i=1}^{m}\sum _{j=1}^{k}1.{y^{(i)=j}log\frac{e^{\theta _{T}^{j}x^{(i)}}}{\sum _{l=1}^{k}e\theta _{l}^{T}x^{(i)}}}]" /></a>
+
+其中的1.{.}是一个指示性函数，即当大括号中的值为真时，该函数的结果就为1，否则其结果就为0。
+
 ## 二、损失函数
 （1）我们既然是通过sigmoid函数的值来进行概率预测的，那么我们的目标就应该是找出一组权重参数θ，能够对于正样本使得sigmoid函数有一个高的输出值，而对于负样本有一个低的输出。我们可以通过计算损失函数来逐步达到这一的目标。
 
@@ -27,8 +33,8 @@ softmax其实是Logistic的推广到多类别分类应用中，不需建立多�
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;=\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" title="=\sum _{i=1}^{m}[y_{i}log(h_{\theta }(x_{i})+(1-y_{i})log(1-h_{\theta }(x_{i}))]" /></a>
 
-（3）通过最小化负的对数似然函数得到最终损失函数表达式：
- 
+（3）通过最小化负的对数似然函数得到最终损失函数表达式，被称为交叉熵(cross entropy) loss函数：
+
  <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;J(\theta&space;)=-\frac{1}{m}\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;J(\theta&space;)=-\frac{1}{m}\sum&space;_{i=1}^{m}[y_{i}log(h_{\theta&space;}(x_{i})&plus;(1-y_{i})log(1-h_{\theta&space;}(x_{i}))]" title="J(\theta )=-\frac{1}{m}\sum _{i=1}^{m}[y_{i}log(h_{\theta }(x_{i})+(1-y_{i})log(1-h_{\theta }(x_{i}))]" /></a>
  
  
