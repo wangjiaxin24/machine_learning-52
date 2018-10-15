@@ -13,15 +13,6 @@
 
 <a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;P=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;^{T}x}}" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;P=h_{\theta&space;}(x)=\frac{1}{1&plus;e^{\theta&space;^{T}x}}" title="P=h_{\theta }(x)=\frac{1}{1+e^{\theta ^{T}x}}" /></a>
 
-### 多分类问题softmax
-softmax其实是Logistic的推广到多类别分类应用中，不需建立多个二分类分类器来实现多类别分类。softmax分类器的思想很简单，对于一个新的样本，softmax回归模型对于每一类都先计算出一个分数，然后通过softmax函数得出一个概率值，根据最终的概率值来确定属于哪一类。
-
-和逻辑回归一样，得到loss函数为：
-
-<a href="https://www.codecogs.com/eqnedit.php?latex=J(\theta&space;)=-\frac{1}{m}[\sum&space;_{i=1}^{m}\sum&space;_{j=1}^{k}1.{y^{(i)=j}log\frac{e^{\theta&space;_{T}^{j}x^{(i)}}}{\sum&space;_{l=1}^{k}e\theta&space;_{l}^{T}x^{(i)}}}]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?J(\theta&space;)=-\frac{1}{m}[\sum&space;_{i=1}^{m}\sum&space;_{j=1}^{k}1.{y^{(i)=j}log\frac{e^{\theta&space;_{T}^{j}x^{(i)}}}{\sum&space;_{l=1}^{k}e\theta&space;_{l}^{T}x^{(i)}}}]" title="J(\theta )=-\frac{1}{m}[\sum _{i=1}^{m}\sum _{j=1}^{k}1.{y^{(i)=j}log\frac{e^{\theta _{T}^{j}x^{(i)}}}{\sum _{l=1}^{k}e\theta _{l}^{T}x^{(i)}}}]" /></a>
-
-其中的1.{.}是一个指示性函数，即当大括号中的值为真时，该函数的结果就为1，否则其结果就为0。
-
 ## 二、损失函数
 （1）我们既然是通过sigmoid函数的值来进行概率预测的，那么我们的目标就应该是找出一组权重参数θ，能够对于正样本使得sigmoid函数有一个高的输出值，而对于负样本有一个低的输出。我们可以通过计算损失函数来逐步达到这一的目标。
 
@@ -49,6 +40,25 @@ softmax其实是Logistic的推广到多类别分类应用中，不需建立多�
 
 * 小批量梯度下降：结合了批梯度下降和随机梯度下降的优点，每次更新的时候使用 n 个样本。减少了参数更新的次数，可以达到更加稳定收敛结果，一般在深度学习当中我们采用这种方法。
 
+## 多分类问题softmax
+softmax其实是Logistic的推广到多类别分类应用中，不需建立多个二分类分类器来实现多类别分类。softmax分类器的思想很简单，对于一个新的样本，softmax回归模型对于每一类都先计算出一个分数，然后通过softmax函数得出一个概率值，根据最终的概率值来确定属于哪一类。
+
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/logistic_2.jpg?raw=true)
+
+和逻辑回归一样，得到loss函数为：
+
+<a href="https://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{100}&space;J(\theta&space;)=-\frac{1}{m}[\sum&space;_{i=1}^{m}\sum&space;_{j=1}^{k}1.[{y^{(i)=j}]log\frac{e^{\theta&space;_{T}^{j}x^{(i)}}}{\sum&space;_{l=1}^{k}e\theta&space;_{l}^{T}x^{(i)}}}]" target="_blank"><img src="https://latex.codecogs.com/gif.latex?\inline&space;\dpi{100}&space;J(\theta&space;)=-\frac{1}{m}[\sum&space;_{i=1}^{m}\sum&space;_{j=1}^{k}1.[{y^{(i)=j}]log\frac{e^{\theta&space;_{T}^{j}x^{(i)}}}{\sum&space;_{l=1}^{k}e\theta&space;_{l}^{T}x^{(i)}}}]" title="J(\theta )=-\frac{1}{m}[\sum _{i=1}^{m}\sum _{j=1}^{k}1.[{y^{(i)=j}]log\frac{e^{\theta _{T}^{j}x^{(i)}}}{\sum _{l=1}^{k}e\theta _{l}^{T}x^{(i)}}}]" /></a>
+
+其中的1.[.]是一个指示性函数，即当大括号中的值为真时，该函数的结果就为1，否则其结果就为0。
+
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/logistic_3.jpg?raw=true)
+
+* 看下面的推到我们可以发现，对每一个参数减去一个参数，最后的结果没有影响。其实softmax 回归中对参数的最优化解不只一个，每当求得一个优化参数时，如果将这个参数的每一项都减掉同一个数，其得到的损失函数值也是一样的，这说明解不是唯一的。之所以会出现这样的现象，因为损失函数不是严格非凸的，也就是说在局部最小值点附近是一个”平坦”的，所以在这个参数附近的值都是一样的了。为避免出现这样的情况，加入正则项
+
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/logistic_4.jpg?raw=true)
+
+### 逻辑回归与Softmax回归的联系
+![upload_picture](https://github.com/wangjiaxin24/machine_learning-52/blob/master/upload_picture/logistic_5.jpg?raw=true)
 
 ## 四、逻辑回归的优缺点
 * 优点：
