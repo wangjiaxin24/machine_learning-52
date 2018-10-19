@@ -45,10 +45,64 @@ SVM 的最优化算法是求解凸二次规划的最优化算法。
 2: 拉格朗日乘子法对偶问题的求解过程.
 
 
+(1) 从“函数间隔”到“几何间隔”
+
+给定训练集T和超平面(w,b)，定义函数间隔γ^
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;\hat{\gamma}&=\underset{i=1,\cdots,N}{\min},y_i(wx_i&plus;b)&space;\&space;&=\underset{i=1,\cdots,N}{\min},\hat{\gamma}_i\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;\hat{\gamma}&=\underset{i=1,\cdots,N}{\min},y_i(wx_i&plus;b)&space;\&space;&=\underset{i=1,\cdots,N}{\min},\hat{\gamma}_i\end{aligned}" title="\begin{aligned} \hat{\gamma}&=\underset{i=1,\cdots,N}{\min},y_i(wx_i+b) \ &=\underset{i=1,\cdots,N}{\min},\hat{\gamma}_i\end{aligned}" /></a>
 
 
+对 w 作规范化，使函数间隔成为几何间隔γ
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;\gamma&=\underset{i=1,\cdots,N}{\min},y_i(\frac{w}{{\color{Red}&space;\left&space;|&space;w&space;\right&space;|}}x_i&plus;\frac{b}{{\color{Red}&space;\left&space;|&space;w&space;\right&space;|}})\&space;&=\underset{i=1,\cdots,N}{\min},\frac{\gamma_i}{{\color{Red}&space;\left&space;|&space;w&space;\right&space;|}}&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;\gamma&=\underset{i=1,\cdots,N}{\min},y_i(\frac{w}{{\color{Red}&space;\left&space;|&space;w&space;\right&space;|}}x_i&plus;\frac{b}{{\color{Red}&space;\left&space;|&space;w&space;\right&space;|}})\&space;&=\underset{i=1,\cdots,N}{\min},\frac{\gamma_i}{{\color{Red}&space;\left&space;|&space;w&space;\right&space;|}}&space;\end{aligned}" title="\begin{aligned} \gamma&=\underset{i=1,\cdots,N}{\min},y_i(\frac{w}{{\color{Red} \left | w \right |}}x_i+\frac{b}{{\color{Red} \left | w \right |}})\ &=\underset{i=1,\cdots,N}{\min},\frac{\gamma_i}{{\color{Red} \left | w \right |}} \end{aligned}" /></a>
+
+(2) 最大化几何间隔
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;&\underset{w,b}{\max}&space;\quad{\color{Red}&space;\frac{\hat{\gamma}}{\left&space;|&space;w&space;\right&space;|}}&space;&&space;\mathrm{s.t.}\quad,&space;y_i(wx_i&plus;b)&space;\geq&space;{\color{Red}&space;\hat{\gamma}},\quad&space;i=1,2,\cdots,N&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;&\underset{w,b}{\max}&space;\quad{\color{Red}&space;\frac{\hat{\gamma}}{\left&space;|&space;w&space;\right&space;|}}&space;&&space;\mathrm{s.t.}\quad,&space;y_i(wx_i&plus;b)&space;\geq&space;{\color{Red}&space;\hat{\gamma}},\quad&space;i=1,2,\cdots,N&space;\end{aligned}" title="\begin{aligned} &\underset{w,b}{\max} \quad{\color{Red} \frac{\hat{\gamma}}{\left | w \right |}} & \mathrm{s.t.}\quad, y_i(wx_i+b) \geq {\color{Red} \hat{\gamma}},\quad i=1,2,\cdots,N \end{aligned}" /></a>
+
+函数间隔γ^的取值不会影响最终的超平面(w,b)：取γ^=1；又最大化 1/||w|| 等价于最小化1/2*||w||^2，于是有
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;&{\color{Red}&space;\underset{w,b}{\max}&space;}&space;\quad\frac{\hat{\gamma}}{{\color{Red}&space;\left&space;|&space;w&space;\right&space;|}}&space;\&space;&&space;\mathrm{s.t.}\quad,&space;y_i(wx_i&plus;b)&space;\geq&space;\hat{\gamma}_i,\quad&space;i=1,2,\cdots,N&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;&{\color{Red}&space;\underset{w,b}{\max}&space;}&space;\quad\frac{\hat{\gamma}}{{\color{Red}&space;\left&space;|&space;w&space;\right&space;|}}&space;\&space;&&space;\mathrm{s.t.}\quad,&space;y_i(wx_i&plus;b)&space;\geq&space;\hat{\gamma}_i,\quad&space;i=1,2,\cdots,N&space;\end{aligned}" title="\begin{aligned} &{\color{Red} \underset{w,b}{\max} } \quad\frac{\hat{\gamma}}{{\color{Red} \left | w \right |}} \ & \mathrm{s.t.}\quad, y_i(wx_i+b) \geq \hat{\gamma}_i,\quad i=1,2,\cdots,N \end{aligned}" /></a>
 
 
+为什么令γ^=1？
+
+——比例改变(ω,b)，超平面不会改变，但函数间隔γ^会成比例改变，因此可以通过等比例改变(ω,b)使函数间隔γ^=1
+
+
+该约束最优化问题即为线性支持向量机的标准问题——这是一个凸二次优化问题，可以使用商业 QP 代码完成。
+
+理论上，线性 SVM 的问题已经解决了；但在高等数学中，带约束的最优化问题还可以用另一种方法求解——拉格朗日乘子法。该方法的优点一是更容易求解，而是自然引入核函数，进而推广到非线性的情况。
+
+(3) SVM 对偶算法的推导
+1. 构建拉格朗日函数
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;L(w,b,{\color{Red}&space;\alpha})=&\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red}&space;\alpha_i}[y_i(w^Tx_i&plus;b)-1]\&space;&{\color{Red}&space;\alpha_i&space;\geq&space;0},\quad&space;i=1,2,\cdots,N&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(w,b,{\color{Red}&space;\alpha})=&\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red}&space;\alpha_i}[y_i(w^Tx_i&plus;b)-1]\&space;&{\color{Red}&space;\alpha_i&space;\geq&space;0},\quad&space;i=1,2,\cdots,N&space;\end{aligned}" title="\begin{aligned} L(w,b,{\color{Red} \alpha})=&\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red} \alpha_i}[y_i(w^Tx_i+b)-1]\ &{\color{Red} \alpha_i \geq 0},\quad i=1,2,\cdots,N \end{aligned}" /></a>
+
+2. 标准问题是求极小极大问题
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;{\color{Red}&space;\underset{w,b}{\min}}&space;{\color{Blue}&space;\underset{\alpha}{\max}}&space;L(w,b,\alpha)&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;{\color{Red}&space;\underset{w,b}{\min}}&space;{\color{Blue}&space;\underset{\alpha}{\max}}&space;L(w,b,\alpha)&space;\end{aligned}" title="\begin{aligned} {\color{Red} \underset{w,b}{\min}} {\color{Blue} \underset{\alpha}{\max}} L(w,b,\alpha) \end{aligned}" /></a>
+
+**对偶问题为：**
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;{\color{Blue}&space;\underset{\alpha}{\max}}&space;{\color{Red}&space;\underset{w,b}{\min}}&space;L(w,b,\alpha)&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;{\color{Blue}&space;\underset{\alpha}{\max}}&space;{\color{Red}&space;\underset{w,b}{\min}}&space;L(w,b,\alpha)&space;\end{aligned}" title="\begin{aligned} {\color{Blue} \underset{\alpha}{\max}} {\color{Red} \underset{w,b}{\min}} L(w,b,\alpha) \end{aligned}" /></a>
+
+3. 求 L 对 (w,b) 的极小
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;\mathrm{set}\quad&space;\frac{\partial&space;L}{\partial&space;w}=0&space;;;&\Rightarrow;&space;w-\sum_{i=1}^N&space;{\color{Red}&space;\alpha_i&space;y_i&space;x_i}=0\&space;&\Rightarrow;&space;w=\sum_{i=1}^N&space;{\color{Red}&space;\alpha_i&space;y_i&space;x_i}&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;\mathrm{set}\quad&space;\frac{\partial&space;L}{\partial&space;w}=0&space;;;&\Rightarrow;&space;w-\sum_{i=1}^N&space;{\color{Red}&space;\alpha_i&space;y_i&space;x_i}=0\&space;&\Rightarrow;&space;w=\sum_{i=1}^N&space;{\color{Red}&space;\alpha_i&space;y_i&space;x_i}&space;\end{aligned}" title="\begin{aligned} \mathrm{set}\quad \frac{\partial L}{\partial w}=0 ;;&\Rightarrow; w-\sum_{i=1}^N {\color{Red} \alpha_i y_i x_i}=0\ &\Rightarrow; w=\sum_{i=1}^N {\color{Red} \alpha_i y_i x_i} \end{aligned}" /></a>
+
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;\mathrm{set}\quad&space;\frac{\partial&space;L}{\partial&space;b}=0&space;;;&\Rightarrow;&space;\sum_{i=1}^N&space;{\color{Red}&space;\alpha_i&space;y_i}=0&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;\mathrm{set}\quad&space;\frac{\partial&space;L}{\partial&space;b}=0&space;;;&\Rightarrow;&space;\sum_{i=1}^N&space;{\color{Red}&space;\alpha_i&space;y_i}=0&space;\end{aligned}" title="\begin{aligned} \mathrm{set}\quad \frac{\partial L}{\partial b}=0 ;;&\Rightarrow; \sum_{i=1}^N {\color{Red} \alpha_i y_i}=0 \end{aligned}" /></a>
+
+4. 结果代入L，有：
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;L(w,b,{\color{Red}&space;\alpha})&space;&=\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red}&space;\alpha_i}[y_i(w^Tx_i&plus;b)-1]\&space;&=\frac{1}{2}w^Tw-w^T\sum_{i=1}^N&space;\alpha_iy_ix_i-b\sum_{i=1}^N&space;\alpha_iy_i&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=\frac{1}{2}w^Tw-w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=-\frac{1}{2}w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N&space;\alpha_i\alpha_j\cdot&space;y_iy_j\cdot&space;{\color{Red}&space;x_i^Tx_j}&plus;\sum_{i=1}^N&space;\alpha_i&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(w,b,{\color{Red}&space;\alpha})&space;&=\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red}&space;\alpha_i}[y_i(w^Tx_i&plus;b)-1]\&space;&=\frac{1}{2}w^Tw-w^T\sum_{i=1}^N&space;\alpha_iy_ix_i-b\sum_{i=1}^N&space;\alpha_iy_i&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=\frac{1}{2}w^Tw-w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=-\frac{1}{2}w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N&space;\alpha_i\alpha_j\cdot&space;y_iy_j\cdot&space;{\color{Red}&space;x_i^Tx_j}&plus;\sum_{i=1}^N&space;\alpha_i&space;\end{aligned}" title="\begin{aligned} L(w,b,{\color{Red} \alpha}) &=\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red} \alpha_i}[y_i(w^Tx_i+b)-1]\ &=\frac{1}{2}w^Tw-w^T\sum_{i=1}^N \alpha_iy_ix_i-b\sum_{i=1}^N \alpha_iy_i+\sum_{i=1}^N \alpha_i\ &=\frac{1}{2}w^Tw-w^Tw+\sum_{i=1}^N \alpha_i\ &=-\frac{1}{2}w^Tw+\sum_{i=1}^N \alpha_i\ &=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N \alpha_i\alpha_j\cdot y_iy_j\cdot {\color{Red} x_i^Tx_j}+\sum_{i=1}^N \alpha_i \end{aligned}" /></a>
+
+即
+
+<a href="http://www.codecogs.com/eqnedit.php?latex=\begin{aligned}&space;L(w,b,{\color{Red}&space;\alpha})&space;&=\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red}&space;\alpha_i}[y_i(w^Tx_i&plus;b)-1]\&space;&=\frac{1}{2}w^Tw-w^T\sum_{i=1}^N&space;\alpha_iy_ix_i-b\sum_{i=1}^N&space;\alpha_iy_i&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=\frac{1}{2}w^Tw-w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=-\frac{1}{2}w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N&space;\alpha_i\alpha_j\cdot&space;y_iy_j\cdot&space;{\color{Red}&space;x_i^Tx_j}&plus;\sum_{i=1}^N&space;\alpha_i&space;\end{aligned}" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\begin{aligned}&space;L(w,b,{\color{Red}&space;\alpha})&space;&=\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red}&space;\alpha_i}[y_i(w^Tx_i&plus;b)-1]\&space;&=\frac{1}{2}w^Tw-w^T\sum_{i=1}^N&space;\alpha_iy_ix_i-b\sum_{i=1}^N&space;\alpha_iy_i&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=\frac{1}{2}w^Tw-w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=-\frac{1}{2}w^Tw&plus;\sum_{i=1}^N&space;\alpha_i\&space;&=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N&space;\alpha_i\alpha_j\cdot&space;y_iy_j\cdot&space;{\color{Red}&space;x_i^Tx_j}&plus;\sum_{i=1}^N&space;\alpha_i&space;\end{aligned}" title="\begin{aligned} L(w,b,{\color{Red} \alpha}) &=\frac{1}{2}w^Tw-\sum_{i=1}^N{\color{Red} \alpha_i}[y_i(w^Tx_i+b)-1]\ &=\frac{1}{2}w^Tw-w^T\sum_{i=1}^N \alpha_iy_ix_i-b\sum_{i=1}^N \alpha_iy_i+\sum_{i=1}^N \alpha_i\ &=\frac{1}{2}w^Tw-w^Tw+\sum_{i=1}^N \alpha_i\ &=-\frac{1}{2}w^Tw+\sum_{i=1}^N \alpha_i\ &=-\frac{1}{2}\sum_{i=1}^N\sum_{j=1}^N \alpha_i\alpha_j\cdot y_iy_j\cdot {\color{Red} x_i^Tx_j}+\sum_{i=1}^N \alpha_i \end{aligned}" /></a>
+
+5. 求 L 对 α 的极大，即
 
 
 
