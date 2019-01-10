@@ -124,5 +124,11 @@ SVM 的最优化算法是求解凸二次规划的最优化算法。
 <a href="http://www.codecogs.com/eqnedit.php?latex=\inline&space;\dpi{120}&space;f(x)=\mathrm{sign}(w^*\cdot&space;x&plus;b^*)" target="_blank"><img src="http://latex.codecogs.com/gif.latex?\inline&space;\dpi{120}&space;f(x)=\mathrm{sign}(w^*\cdot&space;x&plus;b^*)" title="f(x)=\mathrm{sign}(w^*\cdot x+b^*)" /></a>
 
 
-
+- 1. 12-26集  统计学基本知识、二项及泊松分布
+     27-34集  大数定律、正态分布  优秀作业链接（http://codingdarkl.top/2019/01/03/statistically/ )
+- 2.35-46集  中心极限定理、置信区间 优秀作业链接（https://www.jianshu.com/p/bcd1655fad2a）
+- 3.47-53集  假设检验（一）
+   54-61集   假设检验（二）优秀作业链接（https://www.cnblogs.com/Joeyyoung/p/10212733.html）
+- 4. 62-71集   多元线性回归
+   72-81集   卡方分布与方差分析   优秀作业链接（https://www.jianshu.com/p/ed3172b2379b）
 
