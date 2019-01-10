@@ -135,3 +135,11 @@ SVM 的最优化算法是求解凸二次规划的最优化算法。
  4. 62-71集   多元线性回归
     72-81集   卡方分布与方差分析   优秀作业链接（https://www.jianshu.com/p/ed3172b2379b）
 
+
+
+（1）本次统计学学习以网易云可汗学院公开课为主：
+视频链接：http://open.163.com/special/Khan/khstatistics.html
+
+（2）并以《深入浅出统计学》为辅：
+书籍链接：https://pan.baidu.com/s/1dCV6rrOWZU-deKxAoectGA
+
